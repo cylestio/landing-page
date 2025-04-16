@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How You Can Build a Secure MCP Registry in One Evening | Cylestio Blog</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E54G06JMKM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-E54G06JMKM');
+    </script>
+    <link rel="stylesheet" href="../blog.css">
+    <link rel="icon" href="../../favicon.ico">
+    <meta name="description" content="Learn how to build a Complex Product in one evening with a multi-agent framework with this step-by-step guide.">
+    <style>
+        .header-flex {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+        .header-image {
+            width: 240px;
+            height: 240px;
+            object-fit: cover;
+            flex-shrink: 0;
+            border-radius: 8px;
+        }
+        .header-content {
+            flex-grow: 1;
+        }
+        .header-content h1 {
+            margin-top: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .header-flex {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .header-image {
+                width: 100%;
+                height: auto;
+                max-height: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="blog-container">
+        <header class="blog-header">
+            <div class="header-flex">
+                <img src="../images/mcp_registry.png" alt="MCP Registry Interface" class="header-image">
+                <div class="header-content">
+                    <h1>How You Can Build a Complex Product in One Evening - With the Multi-Agent Framework</h1>
+                    <p class="post-meta">April 17, 2025</p>
+                </div>
+            </div>
+            <p><a href="../">← Back to Blog</a></p>
+        </header>
+        
+        <main>
+            <p>There are great tools out there like Bolt, Lovable, and Base44 — and they do a really good job for many types of agent-based development.</p>
+
+            <p>But I keep seeing people ask about more hands-on, complex tasks when trying to build real-world products with agents:</p>
+
+            <ul>
+                <li>Databases</li>
+                <li>APIs</li>
+                <li>Scheduled jobs</li>
+                <li>Multi-component products (backend + frontend + SDKs + MCPs)</li>
+                <li>Low-level or infrastructure-focused tools</li>
+            </ul>
+
+            <p>This is exactly what we're getting into now.</p>
+
+            <p>Other topics — like release pipelines, secure software development lifecycle (SSDLC), testing, compliance, authentication and more — will be covered in upcoming posts.</p>
+
+            <p>I also got some great questions after my <a href="1-executive-prompting.html">previous post</a> asking for actual examples.</p>
+
+            <p>So here it is: a real product, built from scratch, using only multi-agent prompts — including real data fetching, a working DB, backend and frontend logic, and UI.</p>
+
+            <p>In <a href="1-executive-prompting.html">part one</a>, I introduced a simple idea:</p>
+
+            <blockquote>
+                <p>What if instead of casually prompting an AI, you could create a structured, multi-agent system — where each agent takes a role, passes work to the next, and together they build something real?</p>
+            </blockquote>
+
+            <p>This post shows a working example. I used the prompt framework to build a real MVP product from start to finish, and documented every step of the process.</p>
+
+            <hr>
+
+            <h2>🤖 Multi-Agent, Step by Step</h2>
+
+            <p>What makes this system work is that each agent has awareness of the broader process — not just the task at hand.</p>
+
+            <p>Each agent knows:</p>
+            <ul>
+                <li>Its role and responsibility in the overall flow</li>
+                <li>Which agents came before, and what they produced</li>
+                <li>Who it's collaborating with next, and what they'll need</li>
+                <li>What model it's running on, and how to tailor its output accordingly</li>
+                <li>How to share context continuously, like teams syncing in daily standups</li>
+            </ul>
+
+            <p>This isn't just chaining prompts — it's shared knowledge in motion.<br>
+            The agents are aware of each other, collaborate asynchronously, and build on one another's work like a team that's always in sync.</p>
+
+            <p>Each agent works with context, not just instructions. For example:</p>
+            <ul>
+                <li>The Product Manager doesn't just define a spec — it also adds instructions for the Architect, Designer, and Dev Lead.</li>
+                <li>The Dev Lead writes task files for executors, with full context and clear boundaries.</li>
+            </ul>
+
+            <p>There's even a place for agents to leave a short summary, any follow-up notes, and helpful info for whoever comes next.</p>
+
+            <p>It's very basic, but works surprisingly well.</p>
+
+            <p>While this example is built around a one-directional, linear process — the same structure can be extended to more dynamic flows, decision points, and even more autonomous systems.</p>
+
+            <hr>
+
+            <h2>🧠 The Methodology</h2>
+
+            <p>Here's how the flow works:</p>
+
+            <ol>
+                <li>
+                    <strong>Executive → Product Manager</strong><br>
+                    I wrote a short business goal. That was the only input needed. The rest was already inside the prompt template.
+                </li>
+                <li>
+                    <strong>Product Manager → Architect</strong><br>
+                    The agent read the spec and defined the architecture, tech stack, and main components.
+                </li>
+                <li>
+                    <strong>Product Manager & Architect → Designer</strong><br>
+                    Created a design system and flow description in markdown — no Figma needed (yes, I know the product designers are doing much more than that, I just simplified it here for our example).
+                </li>
+                <li>
+                    <strong>Designer & Architect & Designer → Dev Team Lead</strong><br>
+                    Broke the implementation into tasks, each with full context, test instructions, and checklist.
+                </li>
+                <li>
+                    <strong>Dev Team Lead → Executors</strong><br>
+                    Each task was executed by Claude 3.7 or 3.5 Sonnet, which read the spec, implemented the logic, tested it, and logged results.
+                </li>
+            </ol>
+
+            <p>All of this was done in Cursor. Each output was saved to a markdown file in a dedicated directory.</p>
+
+            <p>📂 You can check out the prompt templates here:<br>
+            👉 <a href="https://github.com/omrilahav/vibe-coding" target="_blank">github.com/omrilahav/vibe-coding</a></p>
+
+            <hr>
+
+            <h2>🛠 The Demo Project: MCP Registry & Reputation Explorer</h2>
+
+            <p>To test the process, I picked a project that's small, but includes all the pieces that usually break no-code setups:</p>
+            <ul>
+                <li>External API access</li>
+                <li>Data fetching from real sources</li>
+                <li>Scheduled tasks</li>
+                <li>Databases and storage</li>
+                <li>UI, design system, and interaction</li>
+            </ul>
+
+            <p>🔗 Demo repo:<br>
+            👉 <a href="https://github.com/omrilahav/vibe-coding-demo-mcp-registry" target="_blank">github.com/omrilahav/vibe-coding-demo-mcp-registry</a></p>
+
+            <p>The app scans known sources for MCP servers, pulls metadata like name, license, repo stats, and then displays it in a searchable UI with basic reputation scoring.</p>
+
+            <hr>
+
+            <h2>📏 It Took Just a Short Evening</h2>
+
+            <p>From empty repo to working product — the whole process took less than a few hours.</p>
+
+            <p>Some tasks didn't work on the first try. I copied the error message back into the task prompt, ran it again, and it worked. The agents handled most things really well.</p>
+
+            <p>To keep it simple, I only used the Glama MCP API as a source. The pagination didn't work properly, so the app only shows part of the results — but for the scope of the demo, that was fine.</p>
+
+            <p>Future versions could include:</p>
+            <ul>
+                <li>More sources (GitHub scraping, enrichment)</li>
+                <li>Feedback scoring and reputation signals</li>
+                <li>More polished frontend interactions</li>
+            </ul>
+
+            <p>But the goal here was to show the process clearly.</p>
+
+            <hr>
+
+            <h2>🧭 Want to Try It Yourself?</h2>
+
+            <ol>
+                <li>
+                    Clone the framework repo:<br>
+                    👉 <a href="https://github.com/omrilahav/vibe-coding" target="_blank">github.com/omrilahav/vibe-coding</a>
+                </li>
+                <li>Pick a project or feature idea you want to try.</li>
+                <li>
+                    Go to <code>1-product-manager.md</code>, and write your business goal in the placeholder.
+                    <ul>
+                        <li>You can see the example input I used <a href="https://github.com/omrilahav/vibe-coding-demo-mcp-registry/blob/main/demo-methodology-files/input-product-manager.md" target="_blank">here</a></li>
+                    </ul>
+                </li>
+                <li>Run the prompt in Claude 3.7 Sonnet (Cursor is what I used)</li>
+                <li>Save the output in <code>product/</code>, then move on to the next prompt (it already happens automatically for you)</li>
+                <li>Repeat the process — each agent reads the previous output and generates the next</li>
+                <li>When the Dev Lead creates tasks, give each one to a new agent and run them in order</li>
+            </ol>
+
+            <p>You'll end up with a full set of outputs — specs, architecture, design, code, and tests — all created by AI agents, connected by context.</p>
+
+            <hr>
+
+            <h2>📁 What's in the Demo Repo</h2>
+
+            <p>You can explore all of this in the demo repo.<br>
+            Each folder contains actual agent output:</p>
+
+            <ul>
+                <li><code>product/</code> — product spec, user stories, value props</li>
+                <li><code>architecture/</code> — stack choices, component diagrams, data flow</li>
+                <li><code>design/</code> — design system, screens, layout instructions</li>
+                <li><code>tasks/</code> — implementation plan + task-by-task execution logs</li>
+                <li><code>demo-methodology-files/</code> — prompt files + initial input</li>
+            </ul>
+
+            <p>The product works, even with limited data sources. More importantly, it shows how the agents collaborated to build it.</p>
+
+            <hr>
+
+            <h2>🚀 What's Next</h2>
+
+            <p>This is just one possible direction.<br>
+            The same methodology can support:</p>
+            <ul>
+                <li>Feature requests and product growth</li>
+                <li>CI/CD flows</li>
+                <li>Secure development and SSDLC</li>
+                <li>Agent-led QA and testing</li>
+                <li>Monitoring and incident workflows</li>
+            </ul>
+
+            <p>The long-term goal is to create clear, open flows that allow agents to collaborate like systems — with shared knowledge, scoped decisions, and well-defined responsibilities.</p>
+
+        </main>
+        <footer>
+            <p class="post-meta">&copy; 2025 Cylestio. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html> 
