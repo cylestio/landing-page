@@ -55,9 +55,9 @@
     <div class="blog-container">
         <header class="blog-header">
             <div class="header-flex">
-                <img src="../images/mcp_registry.png" alt="MCP Registry Interface" class="header-image">
+                <img src="../images/multi_agent.png" alt="MCP Registry Interface" class="header-image">
                 <div class="header-content">
-                    <h1>How You Can Build a Complex Product in One Evening - With the Multi-Agent Framework</h1>
+                    <h1>How I used a team of 15 agents with 4 prompts</h1>
                     <p class="post-meta">April 17, 2025</p>
                 </div>
             </div>
@@ -65,63 +65,37 @@
         </header>
         
         <main>
-            <p>There are great tools out there like Bolt, Lovable, and Base44 — and they do a really good job for many types of agent-based development.</p>
-
-            <p>But I keep seeing people ask about more hands-on, complex tasks when trying to build real-world products with agents:</p>
-
+            <p>I keep seeing people ask about how to use coding agents for more complex products that involve:</p>
             <ul>
-                <li>Databases</li>
-                <li>APIs</li>
-                <li>Scheduled jobs</li>
-                <li>Multi-component products (backend + frontend + SDKs + MCPs)</li>
+                <li>Algorithms (ML, scoring, reputation, graphs…)</li>
+                <li>Databases, APIs, or scheduled jobs</li>
+                <li>Multi-component systems (backend + frontend + SDKs + MCPs)</li>
                 <li>Low-level or infrastructure-focused tools</li>
             </ul>
-
-            <p>This is exactly what we're getting into now.</p>
-
-            <p>Other topics — like release pipelines, secure software development lifecycle (SSDLC), testing, compliance, authentication and more — will be covered in upcoming posts.</p>
-
-            <p>I also got some great questions after my <a href="1-executive-prompting.html">previous post</a> asking for actual examples.</p>
-
+            <p>👉 This is exactly what we're getting into now.</p>
+            <p>(Other topics like release pipelines, security, testing, auth, and compliance are coming soon.)</p>
             <p>So here it is: a real product, built from scratch, using only multi-agent prompts — including real data fetching, a working DB, backend and frontend logic, and UI.</p>
-
-            <p>In <a href="1-executive-prompting.html">part one</a>, I introduced a simple idea:</p>
-
-            <blockquote>
-                <p>What if instead of casually prompting an AI, you could create a structured, multi-agent system — where each agent takes a role, passes work to the next, and together they build something real?</p>
-            </blockquote>
-
-            <p>This post shows a working example. I used the prompt framework to build a real MVP product from start to finish, and documented every step of the process.</p>
 
             <hr>
 
-            <h2>🤖 Multi-Agent, Step by Step</h2>
+            <h2>🤖 The Multi-Agent Framework, Step by Step</h2>
 
-            <p>What makes this system work is that each agent has awareness of the broader process — not just the task at hand.</p>
-
-            <p>Each agent knows:</p>
+            <p>Each agent has awareness of the broader process — not just its own task.</p>
+            <p>Learning from how different teams work together, there's value in differentiating roles and ensuring they orchestrate well.</p>
+            <p>The Product Manager doesn't just define a spec — it also adds instructions for the Architect, Designer, and Dev Lead.</p>
+            <p>The Dev Lead decides how many developers it needs for the task, what their execution order should be, and where their task boundaries lie.</p>
+            <p>Each agent works with context, not just instructions:</p>
             <ul>
                 <li>Its role and responsibility in the overall flow</li>
-                <li>Which agents came before, and what they produced</li>
+                <li>Which agents worked before, and what they produced</li>
                 <li>Who it's collaborating with next, and what they'll need</li>
                 <li>What model it's running on, and how to tailor its output accordingly</li>
                 <li>How to share context continuously, like teams syncing in daily standups</li>
             </ul>
-
-            <p>This isn't just chaining prompts — it's shared knowledge in motion.<br>
-            The agents are aware of each other, collaborate asynchronously, and build on one another's work like a team that's always in sync.</p>
-
-            <p>Each agent works with context, not just instructions. For example:</p>
-            <ul>
-                <li>The Product Manager doesn't just define a spec — it also adds instructions for the Architect, Designer, and Dev Lead.</li>
-                <li>The Dev Lead writes task files for executors, with full context and clear boundaries.</li>
-            </ul>
-
-            <p>There's even a place for agents to leave a short summary, any follow-up notes, and helpful info for whoever comes next.</p>
-
+            <p><strong>This isn't just chaining prompts — it's about shared knowledge</strong></p>
+            <p>The agents are aware of each other, collaborate asynchronously, and build on one another's work like a team that's always in sync.</p>
             <p>It's very basic, but works surprisingly well.</p>
-
-            <p>While this example is built around a one-directional, linear process — the same structure can be extended to more dynamic flows, decision points, and even more autonomous systems.</p>
+            <p>The flow can also be extended into branching paths, feedback loops, and fully autonomous systems.</p>
 
             <hr>
 
@@ -159,21 +133,20 @@
 
             <hr>
 
-            <h2>🛠 The Demo Project: MCP Registry & Reputation Explorer</h2>
+            <h2>🛠 The Demo: MCP Registry & Reputation Explorer</h2>
 
-            <p>To test the process, I picked a project that's small, but includes all the pieces that usually break no-code setups:</p>
+            <p>To showcase the process (I'm working on a much larger-scale product that will be released soon using the multi-agent framework), I picked a realistic project — something that usually breaks in no-code environments:</p>
             <ul>
-                <li>External API access</li>
-                <li>Data fetching from real sources</li>
-                <li>Scheduled tasks</li>
-                <li>Databases and storage</li>
-                <li>UI, design system, and interaction</li>
+                <li>Reputation algorithm</li>
+                <li>Real API access</li>
+                <li>Fetching + storing real data</li>
+                <li>Scheduling</li>
+                <li>Clean UI</li>
+                <li>Design system</li>
+                <li>A working backend + database</li>
             </ul>
 
-            <p>🔗 Demo repo:<br>
-            👉 <a href="https://github.com/omrilahav/vibe-coding-demo-mcp-registry" target="_blank">github.com/omrilahav/vibe-coding-demo-mcp-registry</a></p>
-
-            <p>The app scans known sources for MCP servers, pulls metadata like name, license, repo stats, and then displays it in a searchable UI with basic reputation scoring.</p>
+            <p>The MCP Registry app scans for real MCP servers, pulls metadata, calculates a reputation score, and displays it in a dynamic UI — to help teams select trustable sources.</p>
 
             <hr>
 
